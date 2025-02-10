@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuri, ¿Quieres ser mi San Valentín?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            margin: 50px;
+        }
+        h1 {
+            color: #d63384;
+        }
+        #contenedor {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #si {
+            background-color: #ff4d79;
+            color: white;
+            border-radius: 10px;
+        }
+        #no {
+            background-color: #ccc;
+            color: black;
+            border-radius: 10px;
+        }
+        #mensaje {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #d63384;
+            font-weight: bold;
+            display: none;
+        }
+        #animacion {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="pregunta">Zuri, ¿Quieres ser mi San Valentín? ❤️</h1>
+    <div id="contenedor">
+        <button id="si">Sí</button>
+        <button id="no">No</button>
+    </div>
+    <p id="mensaje"></p>
+    <div id="animacion">
+        <img id="gato" width="150">
+    </div>
+
+    <script>
+        const btnSi = document.getElementById("si");
+        const btnNo = document.getElementById("no");
+        const mensaje = document.getElementById("mensaje");
+        const animacion = document.getElementById("animacion");
+        const pregunta = document.getElementById("pregunta");
+        const contenedor = document.getElementById("contenedor");
+        const gato = document.getElementById("gato");
+
+        const mensajesNo = ["No?", "Segura?😿", "Última oportunidad?", "¿En serio no?"];
+        let tamanoNo = 20;
+        let tamanoSi = 20;
+
+        btnNo.addEventListener("click", () => {
+            let mensajeAleatorio = mensajesNo[Math.floor(Math.random() * mensajesNo.length)];
+            mensaje.textContent = mensajeAleatorio;
+            mensaje.style.display = "block";
+
+            // Reducir el tamaño del botón "No"
+            tamanoNo -= 2;
+            if (tamanoNo > 5) {
+                btnNo.style.fontSize = tamanoNo + "px";
+                btnNo.style.padding = tamanoNo / 2 + "px";
+            } else {
+                btnNo.style.display = "none";
+            }
+
+            // Aumentar el tamaño del botón "Sí"
+            tamanoSi += 3;
+            btnSi.style.fontSize = tamanoSi + "px";
+            btnSi.style.padding = tamanoSi / 2 + "px";
+        });
+
+        btnSi.addEventListener("click", () => {
+            // Ocultar la pregunta y los botones
+            pregunta.style.display = "none";
+            contenedor.style.display = "none";
+
+            // Mostrar el mensaje y la animación
+            mensaje.textContent = "¡Gracias! No te arrepentirás, te haré la niña más feliz del mundo ❤️";
+            mensaje.style.display = "block";
+
+            // Mostrar tu GIF personalizado
+            gato.src = "https://i.pinimg.com/originals/f8/be/cb/f8becb4e035e206d0dda352e1f9526df.gif";  
+            animacion.style.display = "block";
+        });
+    </script>
+
+</body>
+</html>
